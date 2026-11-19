@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Recurso didáctico sobre la inspección y conservación preventiva de extintores en el hogar. Contenido 100% educativo sin fines comerciales ni captación de datos.">
+<meta name="author" content="Juan Esteban Hernandez Lopez">
+<meta name="robots" content="index, follow">
+<title>Juan Esteban Hernandez Lopez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-primary: #0b0a14;
+    --bg-secondary: #161426;
+    --bg-card: rgba(22, 20, 38, 0.72);
+    --bg-card-hover: rgba(34, 31, 56, 0.9);
+    --border-glow: rgba(139, 92, 246, 0.38);
+    --border-subtle: rgba(167, 139, 250, 0.14);
+    --accent-orange: #8b5cf6;
+    --accent-red: #ec4899;
+    --accent-amber: #a78bfa;
+    --accent-cyan: #06b6d4;
+    --accent-emerald: #10b981;
+    --text-primary: #f5f3ff;
+    --text-secondary: #ddd6fe;
+    --text-muted: #9ca3af;
+    --gradient-1: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    --gradient-2: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+    --gradient-3: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(236, 72, 153, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.05) 0%, transparent 60%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+    animation: gridDrift 60s linear infinite;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(circle at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 8%),
+        radial-gradient(circle at 70% 60%, rgba(236, 72, 153, 0.12) 0%, transparent 8%),
+        radial-gradient(circle at 40% 80%, rgba(167, 139, 250, 0.1) 0%, transparent 6%);
+    filter: blur(40px);
+    pointer-events: none;
+    z-index: 0;
+    animation: orbFloat 20s ease-in-out infinite alternate;
+}
+
+@keyframes gridDrift {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}
+
+@keyframes orbFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -20px) scale(1.1); }
+    100% { transform: translate(-20px, 30px) scale(0.95); }
+}
+
+/* Scanning line effect */
+.scan-line {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    box-shadow: 0 0 12px var(--accent-orange);
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.4;
+    animation: scan 8s linear infinite;
+}
+
+@keyframes scan {
+    0% { transform: translateY(-2px); }
+    100% { transform: translateY(100vh); }
+}
+
+/* ===== HEADER ===== */
+header {
+    background: rgba(11, 10, 20, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.logo-mark {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--gradient-1);
+    display: grid;
+    place-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.45);
+    position: relative;
+}
+
+.logo-mark::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 12px;
+    background: var(--gradient-1);
+    opacity: 0.5;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.logo-text small {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 0.55rem 1rem;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: inline-block;
+    border: 1px solid transparent;
+}
+
+nav a:hover {
+    color: var(--accent-orange);
+    background: rgba(139, 92, 246, 0.08);
+    border-color: var(--border-glow);
+}
+
+nav a.active {
+    color: var(--accent-orange);
+    background: rgba(139, 92, 246, 0.14);
+    border-color: var(--border-glow);
+    box-shadow: 0 0 12px rgba(139, 92, 246, 0.2);
+}
+
+/* ===== HERO ===== */
+.hero {
+    position: relative;
+    padding: 6rem 2rem 5rem;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 2.2rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hero-meta span { display: inline-flex; align-items: center; gap: 0.4rem; }
+.hero-meta .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-emerald); box-shadow: 0 0 6px var(--accent-emerald); }
+
+.tech-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem 0 0;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.07) 0%, transparent 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 1.2rem 1rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+    border-color: var(--accent-orange);
+    transform: translateY(-3px);
+}
+
+.stat-card .num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+}
+
+.stat-card .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center top, rgba(139, 92, 246, 0.2) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid var(--border-glow);
+    padding: 0.5rem 1.1rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    margin-bottom: 1.8rem;
+    font-weight: 500;
+    color: var(--accent-amber);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.02em;
+}
+
+.badge::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent-orange);
+    box-shadow: 0 0 8px var(--accent-orange);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.4rem;
+    color: var(--text-primary);
+    background: linear-gradient(180deg, #f5f3ff 0%, #a5b4fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero h1 .accent {
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* ===== MAIN ===== */
+main {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 3rem 2rem 4rem;
+    position: relative;
+    z-index: 1;
+}
+
+.page { display: none; animation: fadeUp 0.5s ease; }
+.page.active { display: block; }
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+section {
+    background: var(--bg-card);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2.5rem;
+    margin-bottom: 1.8rem;
+    border-radius: 16px;
+    border: 1px solid var(--border-subtle);
+    transition: border-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+section:hover {
+    border-color: var(--border-glow);
+}
+
+section:hover::before { opacity: 0.6; }
+
+h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--text-primary);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+h2::before {
+    content: '';
+    width: 4px;
+    height: 26px;
+    background: var(--gradient-1);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--accent-orange);
+}
+
+h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--accent-amber);
+    font-size: 1.18rem;
+    font-weight: 600;
+    margin-top: 1.6rem;
+    margin-bottom: 0.7rem;
+    letter-spacing: -0.01em;
+}
+
+p {
+    margin-bottom: 1rem;
+    text-align: justify;
+    color: var(--text-secondary);
+}
+
+ul, ol { margin-left: 1.6rem; margin-bottom: 1rem; color: var(--text-secondary); }
+li { margin-bottom: 0.5rem; }
+
+strong { color: var(--text-primary); font-weight: 600; }
+em { color: var(--text-muted); }
+
+/* ===== ALERT BOXES ===== */
+.highlight-box, .info-box, .responsable-box, .warning-box {
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 12px;
+    border: 1px solid;
+    backdrop-filter: blur(5px);
+}
+
+.highlight-box {
+    background: rgba(167, 139, 250, 0.08);
+    border-color: rgba(167, 139, 250, 0.25);
+    border-left: 3px solid var(--accent-amber);
+}
+
+.highlight-box strong { color: var(--accent-amber); }
+
+.info-box {
+    background: rgba(6, 182, 212, 0.06);
+    border-color: rgba(6, 182, 212, 0.2);
+    border-left: 3px solid var(--accent-cyan);
+}
+
+.info-box strong { color: var(--accent-cyan); }
+
+.warning-box {
+    background: rgba(236, 72, 153, 0.07);
+    border-color: rgba(236, 72, 153, 0.25);
+    border-left: 3px solid var(--accent-red);
+}
+
+.warning-box strong { color: var(--accent-red); }
+
+.responsable-box {
+    background: rgba(16, 185, 129, 0.06);
+    border-color: rgba(16, 185, 129, 0.25);
+    border-left: 3px solid var(--accent-emerald);
+}
+
+.responsable-box strong { color: var(--accent-emerald); }
+
+/* ===== GRIDS & CARDS ===== */
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin: 2rem 0; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin: 2rem 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin: 2rem 0; }
+
+.service-card {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(236, 72, 153, 0.05) 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem 1.5rem;
+    border-radius: 14px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-orange);
+    box-shadow: 0 8px 30px -10px var(--accent-orange);
+}
+
+.service-card .icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+}
+
+.service-card h3 { margin-top: 0.8rem; color: var(--text-primary); }
+.service-card p { text-align: center; color: var(--text-muted); font-size: 0.95rem; }
+
+.type-card {
+    background: linear-gradient(180deg, rgba(139, 92, 246, 0.09) 0%, transparent 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 1.4rem 1rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.type-card:hover {
+    border-color: var(--accent-orange);
+    transform: translateY(-3px);
+}
+
+.type-card .badge-letter {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    background: var(--gradient-1);
+    color: white;
+    border-radius: 50%;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+.type-card h4 {
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    margin-bottom: 0.4rem;
+}
+
+.type-card p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+.grid-2 .card {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06) 0%, rgba(236, 72, 153, 0.05) 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 2rem;
+    border-radius: 14px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.grid-2 .card:hover { transform: translateY(-3px); border-color: var(--border-glow); }
+.grid-2 .card h3 { margin-top: 0; color: var(--text-primary); font-size: 1.3rem; }
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb {
+    background: rgba(139, 92, 246, 0.06);
+    border: 1px solid var(--border-subtle);
+    padding: 0.6rem 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.breadcrumb a {
+    color: var(--accent-amber);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.breadcrumb a:hover { text-decoration: underline; }
+
+/* ===== TIPS ===== */
+.tip {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.07) 0%, transparent 100%);
+    border: 1px solid var(--border-subtle);
+    border-left: 3px solid var(--accent-orange);
+    padding: 1rem 1.2rem;
+    margin: 0.7rem 0;
+    border-radius: 8px;
+    transition: all 0.25s ease;
+    color: var(--text-secondary);
+}
+
+.tip:hover {
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.12) 0%, transparent 100%);
+    transform: translateX(4px);
+    border-left-color: var(--accent-red);
+}
+
+.tip strong { color: var(--accent-amber); }
+
+/* PASS Steps */
+.pass-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.5rem 0;
+}
+
+.pass-step {
+    background: linear-gradient(180deg, rgba(236, 72, 153, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+    border: 1px solid var(--border-subtle);
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.pass-step:hover {
+    border-color: var(--accent-red);
+    transform: translateY(-3px);
+}
+
+.pass-step .step-num {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-red);
+    color: white;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    line-height: 26px;
+    box-shadow: 0 0 10px rgba(236, 72, 153, 0.5);
+}
+
+.pass-step .letter {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-amber);
+    margin-bottom: 0.4rem;
+}
+
+.pass-step h4 {
+    color: var(--text-primary);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+}
+
+.pass-step p {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 0;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: rgba(7, 6, 14, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--text-secondary);
+    padding: 3.5rem 2rem 1.5rem;
+    margin-top: 4rem;
+    border-top: 1px solid var(--border-subtle);
+    position: relative;
+    z-index: 1;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 600px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    opacity: 0.5;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2.5rem;
+}
+
+footer h4 {
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+footer p, footer li {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+footer ul { list-style: none; margin-left: 0; }
+footer ul li { margin-bottom: 0.5rem; }
+
+footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.25s ease;
+}
+
+footer a:hover { color: var(--accent-amber); }
+
+.responsable-footer {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.06), rgba(236, 72, 153, 0.05));
+    border: 1px solid var(--border-glow);
+    padding: 1.5rem;
+    border-radius: 14px;
+    position: relative;
+}
+
+.responsable-footer::before {
+    content: 'ID';
+    position: absolute;
+    top: -10px;
+    left: 1.5rem;
+    background: var(--bg-primary);
+    color: var(--accent-amber);
+    padding: 0 0.6rem;
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+}
+
+.responsable-footer h4 { color: var(--accent-amber); }
+.responsable-footer strong { color: var(--text-primary); }
+
+.footer-bottom {
+    max-width: 1280px;
+    margin: 3rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.footer-bottom p { margin-bottom: 0.4rem; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .hero h1 { font-size: 1.8rem; }
+    .hero p { font-size: 1rem; }
+    .grid-2, .grid-3, .grid-4, .pass-grid, .tech-stats { grid-template-columns: 1fr 1fr; }
+    .footer-container { grid-template-columns: 1fr; }
+    nav ul { gap: 0.3rem; justify-content: center; }
+    nav a { font-size: 0.82rem; padding: 0.4rem 0.7rem; }
+    .header-container { flex-direction: column; }
+    section { padding: 1.6rem; }
+    h2 { font-size: 1.35rem; }
+    main { padding: 2rem 1.2rem 3rem; }
+    .logo { font-size: 1rem; }
+    .logo-mark { width: 34px; height: 34px; }
+    .scan-line { display: none; }
+}
+
+/* Hover glow on logo mark */
+.logo-mark { animation: logoPulse 4s ease-in-out infinite; }
+
+@keyframes logoPulse {
+    0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.45); }
+    50% { box-shadow: 0 0 30px rgba(139, 92, 246, 0.7), 0 0 50px rgba(236, 72, 153, 0.3); }
+}
+
+/* Cursor blink in hero */
+.cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1em;
+    background: var(--accent-orange);
+    margin-left: 4px;
+    vertical-align: middle;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+::selection {
+    background: rgba(139, 92, 246, 0.3);
+    color: var(--text-primary);
+}
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb {
+    background: rgba(139, 92, 246, 0.25);
+    border-radius: 10px;
+    border: 2px solid var(--bg-primary);
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(139, 92, 246, 0.45); }
+</style>
+</head>
+<body>
+
+<div class="scan-line"></div>
+
+<header>
+    <div class="header-container">
+        <div class="logo">
+            <div class="logo-mark">JE</div>
+            <div class="logo-text">
+                <span>Juan Esteban Hernandez Lopez</span>
+                <small>Recurso 100% Educativo</small>
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio" id="nav-inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros" id="nav-sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#mision-vision" id="nav-mision-vision">Misión y Visión</a></li>
+                <li><a href="#politicas-privacidad" id="nav-politicas-privacidad">Políticas y Privacidad</a></li>
+                <li><a href="#terminos-condiciones" id="nav-terminos-condiciones">Términos y Condiciones</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- ====================== INICIO ====================== -->
+<div id="page-inicio" class="page active">
+    <div class="hero">
+        <div class="hero-content">
+            <span class="badge">100% Educativo · Sin fines comerciales</span>
+            <h1>Aprendizaje y Conservación de <span class="accent">Extintores en el Hogar</span><span class="cursor"></span></h1>
+            <p>Material didáctico 100% educativo con conceptos claros para comprender, conservar y verificar el extintor doméstico, fortaleciendo el conocimiento preventivo de la familia.</p>
+            <div class="hero-meta">
+                <span><span class="dot"></span> CONTENIDO 100% DIDÁCTICO</span>
+                <span>v2.0</span>
+                <span>COL-2026</span>
+            </div>
+            <div class="tech-stats">
+                <div class="stat-card">
+                    <div class="num">04</div>
+                    <div class="label">Clases de Fuego</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">P.A.S.S.</div>
+                    <div class="label">Secuencia Didáctica</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">12</div>
+                    <div class="label">Meses por Revisión</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">123</div>
+                    <div class="label">Línea de Auxilio</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section>
+            <h2>Finalidad 100% Educativa de este Recurso</h2>
+            <p>Este espacio digital se ha concebido con un <strong>fin exclusivamente pedagógico, formativo y divulgativo</strong>. Su meta central consiste en acercar a las familias de Colombia conceptos accesibles y verificables sobre la conservación, revisión preventiva y funcionamiento básico de los extintores en el hogar, promoviendo una cultura ciudadana de prevención y autocuidado ante conatos de incendio.</p>
+
+            <div class="highlight-box">
+                <strong>¿Por qué se construye este material puramente didáctico?</strong>
+                <p style="margin-top: 0.6rem;">En Colombia, numerosos conatos de incendio en viviendas podrían controlarse durante sus primeros instantes si las familias contaran con un extintor en condiciones adecuadas y comprendieran su manejo básico. Sin embargo, muchos hogares adquieren un equipo y dejan de observarlo con el tiempo, desconociendo que un cilindro sin revisión periódica puede resultar ineficaz en una urgencia. Este recurso busca aportar claridad gratuita y formativa para cerrar esa brecha de conocimiento.</p>
+            </div>
+
+            <p><strong>Como sitio 100% educativo, aquí NO se realiza:</strong></p>
+            <ul>
+                <li>Captación, registro ni resguardo de datos personales de quienes consultan el sitio.</li>
+                <li>Venta de cilindros, recargas, equipos, artículos ni asesorías pagas.</li>
+                <li>Trámites de inscripción, membresía ni registro de usuarios.</li>
+                <li>Cobros, pagos ni operaciones monetarias de ningún tipo.</li>
+                <li>Recomendación comercial de marcas, fabricantes ni empresas del sector.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Importancia Educativa del Extintor Doméstico</h2>
+            <p>Comprender qué es un extintor portátil, cómo funciona y qué papel cumple en los primeros segundos de un conato de fuego forma parte de la educación básica en seguridad del hogar. Conocer su ubicación, estado y uso correcto ayuda a fomentar hábitos preventivos responsables en toda la familia.</p>
+            <div class="grid-3">
+                <div class="service-card">
+                    <div class="icon">🔥</div>
+                    <h3>Cultura Preventiva</h3>
+                    <p>Permite entender cómo actuar ante pequeños focos iniciales antes de que alcancen mayor magnitud.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🏠</div>
+                    <h3>Conciencia Familiar</h3>
+                    <p>Promueve el cuidado colectivo del entorno doméstico, las personas y los espacios compartidos.</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">⏱️</div>
+                    <h3>Comprensión de Tiempos</h3>
+                    <p>Explica por qué los minutos iniciales son decisivos y cuándo corresponde evacuar sin dudar.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Clasificación Didáctica de Extintores</h2>
+            <p>Cada clase de fuego involucra materiales distintos y requiere un agente extintor compatible. Estudiar estas categorías ayuda a identificar por qué no todos los equipos sirven para cualquier origen de combustión.</p>
+            <div class="grid-4">
+                <div class="type-card">
+                    <div class="badge-letter">A</div>
+                    <h4>Materiales Sólidos</h4>
+                    <p>Madera, papel, cartón, telas y plásticos ordinarios.</p>
+                </div>
+                <div class="type-card">
+                    <div class="badge-letter">B</div>
+                    <h4>Líquidos Inflamables</h4>
+                    <p>Gasolina, aceites, alcoholes, pinturas y solventes.</p>
+                </div>
+                <div class="type-card">
+                    <div class="badge-letter">C</div>
+                    <h4>Equipos Eléctricos</h4>
+                    <p>Aparatos energizados, enchufes y tableros eléctricos.</p>
+                </div>
+                <div class="type-card">
+                    <div class="badge-letter">K</div>
+                    <h4>Grasas de Cocina</h4>
+                    <p>Aceites y grasas vegetales o animales en cocción.</p>
+                </div>
+            </div>
+            <div class="info-box">
+                <strong>Apunte educativo:</strong> El extintor de polvo químico seco <strong>multipropósito ABC</strong> suele estudiarse como referencia general en el hogar por su cobertura frente a combustibles sólidos, líquidos y riesgos eléctricos, mientras que la clase K se asocia específicamente a grasas de cocina.
+            </div>
+        </section>
+
+        <section>
+            <h2>Guía Didáctica para Conservar e Inspeccionar</h2>
+            <div class="tip"><strong>1. Ubicación visible y despejada:</strong> se recomienda situarlo en un sitio accesible y a una altura máxima de 1.50 metros sobre el piso, lejos de fuentes de calor directo y humedad excesiva.</div>
+            <div class="tip"><strong>2. Observación visual mensual:</strong> es buena práctica revisar cada mes que la aguja del manómetro esté en la zona verde, el precinto no esté roto y el cilindro no tenga golpes, óxido o fugas.</div>
+            <div class="tip"><strong>3. Lectura de fechas y vigencia:</strong> conviene revisar las fechas de fabricación, carga y próxima inspección; por lo general, los equipos domésticos requieren revisión anual.</div>
+            <div class="tip"><strong>4. Revisión de manguera y boquilla:</strong> se debe comprobar que la manguera no presente grietas ni obstrucciones y mantener limpia la boquilla para evitar acumulación de polvo o insectos.</div>
+            <div class="tip"><strong>5. Mantenimiento por personal certificado:</strong> al cumplirse el periodo anual, la recarga y verificación técnica corresponden a proveedores autorizados; nunca debe manipularse ni recargarse de forma casera.</div>
+            <div class="tip"><strong>6. Agitación suave en equipos PQS:</strong> en extintores de polvo químico seco, girar o invertir suavemente el cilindro cada uno o dos meses ayuda a evitar que el polvo se compacte en el fondo.</div>
+            <div class="tip"><strong>7. Control del sello de seguridad:</strong> si el sello se encuentra roto sin que el equipo haya sido utilizado, debe llevarse a revisión técnica de inmediato.</div>
+            <div class="tip"><strong>8. Conservación de la etiqueta:</strong> la etiqueta con indicaciones debe mantenerse legible y completa para facilitar la lectura rápida de su clase y modo de empleo.</div>
+        </section>
+
+        <section>
+            <h2>Secuencia Educativa: Técnica P.A.S.S.</h2>
+            <p>La sigla P.A.S.S. (<em>Pull, Aim, Squeeze, Sweep</em>) resume de manera sencilla los cuatro pasos descritos en la capacitación básica para operar un extintor portátil ante un conato.</p>
+            <div class="pass-grid">
+                <div class="pass-step">
+                    <span class="step-num">1</span>
+                    <div class="letter">P</div>
+                    <h4>Pull / Tirar</h4>
+                    <p>Retirar el pasador de seguridad para liberar el mecanismo.</p>
+                </div>
+                <div class="pass-step">
+                    <span class="step-num">2</span>
+                    <div class="letter">A</div>
+                    <h4>Aim / Apuntar</h4>
+                    <p>Dirigir la boquilla hacia la base del fuego, no a las llamas.</p>
+                </div>
+                <div class="pass-step">
+                    <span class="step-num">3</span>
+                    <div class="letter">S</div>
+                    <h4>Squeeze / Presionar</h4>
+                    <p>Accionar el gatillo de forma firme y sostenida.</p>
+                </div>
+                <div class="pass-step">
+                    <span class="step-num">4</span>
+                    <div class="letter">S</div>
+                    <h4>Sweep / Barrer</h4>
+                    <p>Mover el chorro de lado a lado cubriendo la base del foco.</p>
+                </div>
+            </div>
+            <div class="warning-box">
+                <strong>Criterio educativo de seguridad:</strong> La enseñanza preventiva enfatiza contar siempre con una salida libre a la espalda y evacuar de inmediato si el fuego crece o hay presencia densa de humo, acudiendo a la línea <strong>123</strong> o a Bomberos. La preservación de la vida es prioritaria.
+            </div>
+        </section>
+
+        <section>
+            <h2>Principios Educativos de Prevención en Casa</h2>
+            <ol>
+                <li>Promover la existencia de al menos un equipo multipropósito ABC en el hogar, idealmente uno por nivel o piso.</li>
+                <li>Compartir con los miembros del hogar (excepto niños pequeños) dónde se ubica el extintor y cuál es su principio de uso.</li>
+                <li>Fomentar al menos una práctica familiar de evacuación al año para afianzar el conocimiento preventivo.</li>
+                <li>Mantener despejadas las vías de salida y reconocer al menos dos alternativas para evacuar la vivienda.</li>
+                <li>Conocer la función de los detectores de humo y la importancia de revisar periódicamente sus baterías.</li>
+                <li>Fomentar hábitos de desconexión de aparatos sin uso y supervisión periódica de instalaciones eléctricas y de gas.</li>
+                <li>Recordar los números de atención en Colombia: <strong>123</strong> (línea única de emergencias) y <strong>119</strong> (Bomberos en diversas ciudades).</li>
+            </ol>
+            <div class="info-box">
+                <strong>Carácter formativo:</strong> Este material tiene un fin 100% educativo y de divulgación general. No reemplaza la capacitación presencial, la asesoría técnica especializada ni el mantenimiento certificado conforme a las normas NTC o NFPA aplicables.
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- ====================== SOBRE NOSOTROS ====================== -->
+<div id="page-sobre-nosotros" class="page">
+    <main>
+        <section>
+            <div class="breadcrumb"><a href="#inicio">~/inicio</a> &gt; sobre-nosotros</div>
+            <h2>Sobre Nosotros</h2>
+            <p>Somos una iniciativa 100% educativa e independiente nacida en <strong>Barranquilla, Atlántico (Colombia)</strong>, con el propósito de poner al alcance de los hogares colombianos información clara, didáctica y verificable sobre el cuidado y mantenimiento de extintores en casa, fomentando una cultura preventiva en el ámbito familiar.</p>
+            <p>Este recurso surge al observar que muchas familias adquieren un extintor por recomendación o norma, pero dejan de revisarlo con el paso del tiempo, desconociendo que la falta de inspección puede afectar su disponibilidad cuando se requiere conocimiento y preparación.</p>
+
+            <h3>¿Quiénes somos?</h3>
+            <p>Detrás de este sitio educativo se encuentra <strong>Juan Esteban Hernandez Lopez</strong>, ciudadano colombiano residente en Barranquilla (Atlántico), quien de manera personal y voluntaria divulga contenidos 100% educativos sobre el cuidado de extintores domésticos, sin fines de lucro y sin ofrecer servicios comerciales.</p>
+
+            <h3>Nuestro compromiso educativo</h3>
+            <ul>
+                <li>Difundir información estrictamente educativa, con enfoque ciudadano y familiar.</li>
+                <li>Mantener un espacio 100% gratuito, sin publicidad comercial y sin captación de datos personales.</li>
+                <li>Promover una cultura de aprendizaje, prevención y seguridad frente a incendios.</li>
+                <li>Actualizar periódicamente los contenidos educativos conforme a buenas prácticas vigentes.</li>
+                <li>Respetar plenamente la privacidad de quienes consultan el material.</li>
+            </ul>
+
+            <div class="responsable-box">
+                <strong>Identificación del responsable del sitio educativo:</strong>
+                <p style="margin-top: 0.6rem;">
+                    <strong>Nombre:</strong> Juan Esteban Hernandez Lopez<br>
+                    <strong>NIT:</strong> 1.000.403.486-1<br>
+                    <strong>Dirección:</strong> Calle 84b #39b-34 , Barranquilla, Atlántico — Colombia<br>
+                    <strong>Correo electrónico:</strong> Anduxo12@gmail.com<br>
+                    <strong>Carácter:</strong> Anunciante y responsable del tratamiento de datos
+                </p>
+            </div>
+
+            <h3>Naturaleza 100% educativa</h3>
+            <p>Este sitio web tiene una naturaleza exclusivamente educativa. No constituye actividad mercantil ni representa a ninguna empresa, marca, entidad pública, fabricante de extintores ni proveedor de servicios. Todo el contenido es de libre consulta didáctica y su único fin es contribuir a la educación preventiva en el hogar.</p>
+        </section>
+    </main>
+</div>
+
+<!-- ====================== MISIÓN Y VISIÓN ====================== -->
+<div id="page-mision-vision" class="page">
+    <main>
+        <section>
+            <div class="breadcrumb"><a href="#inicio">~/inicio</a> &gt; mision-vision</div>
+            <h2>Misión y Visión</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>Nuestra Misión</h3>
+                    <p>Difundir, de manera clara, accesible y gratuita, contenidos 100% educativos que orienten a los hogares colombianos sobre el cuidado y mantenimiento de los extintores domésticos, promoviendo la cultura de prevención, la educación familiar y la conciencia ante emergencias por incendio, sin actividades comerciales ni captación de datos personales.</p>
+                </div>
+                <div class="card">
+                    <h3>Nuestra Visión</h3>
+                    <p>Ser para el año 2030 un recurso educativo de referencia en línea para las familias colombianas que desean aprender sobre prevención doméstica y el cuidado adecuado de extintores, reconocido por la claridad, sencillez y rigor didáctico de su información, así como por su compromiso con la educación ciudadana.</p>
+                </div>
+            </div>
+
+            <h3>Nuestros Valores</h3>
+            <ul>
+                <li><strong>Educación:</strong> creemos en el valor del aprendizaje claro y accesible como herramienta preventiva.</li>
+                <li><strong>Prevención:</strong> promovemos una cultura familiar basada en el conocimiento anticipado.</li>
+                <li><strong>Transparencia:</strong> publicamos información didáctica clara, verificable y de utilidad práctica.</li>
+                <li><strong>Gratuidad:</strong> el acceso a este recurso educativo es y será siempre libre y sin costo.</li>
+                <li><strong>Privacidad:</strong> no recolectamos datos personales de quienes consultan el sitio.</li>
+                <li><strong>Independencia:</strong> no representamos intereses comerciales, políticos ni gremiales.</li>
+            </ul>
+
+            <div class="info-box">
+                <strong>Verificación educativa:</strong> Esta misión y visión se publican con fines de acreditación del propósito 100% educativo del sitio, conforme a las exigencias de las plataformas digitales y de las normas colombianas aplicables.
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- ====================== POLÍTICAS Y PRIVACIDAD ====================== -->
+<div id="page-politicas-privacidad" class="page">
+    <main>
+        <section>
+            <div class="breadcrumb"><a href="#inicio">~/inicio</a> &gt; politicas-privacidad</div>
+            <h2>Políticas y Privacidad</h2>
+            <p><em>Última actualización: 8 de mayo de 2026</em></p>
+
+            <div class="responsable-box">
+                <strong>Responsable del tratamiento de los datos:</strong>
+                <p style="margin-top: 0.6rem;">
+                    <strong>Nombre:</strong> Juan Esteban Hernandez Lopez<br>
+                    <strong>NIT:</strong> 1.000.403.486-1<br>
+                    <strong>Dirección:</strong> Calle 84b #39b-34 , Barranquilla, Atlántico — Colombia<br>
+                    <strong>Correo electrónico de contacto:</strong> Anduxo12@gmail.com
+                </p>
+            </div>
+
+            <h3>1. Objeto</h3>
+            <p>La presente política tiene por objeto informar a los usuarios y visitantes de este recurso educativo sobre el tratamiento dado a la información, en cumplimiento de la <strong>Ley 1581 de 2012</strong>, el <strong>Decreto 1377 de 2013</strong> y demás normas concordantes sobre protección de datos personales en Colombia.</p>
+
+            <h3>2. Naturaleza 100% educativa</h3>
+            <p>Este sitio es un <strong>recurso 100% educativo de libre consulta</strong>. No requiere registro, no solicita datos personales, no emplea formularios de contacto y no utiliza cookies de seguimiento publicitario. Por ello, en condiciones normales de navegación, no recolecta, almacena ni trata datos personales de los visitantes.</p>
+
+            <h3>3. Datos técnicos eventuales</h3>
+            <p>De manera técnica y automática, el servidor que aloja este sitio podría registrar información estándar como dirección IP, tipo de navegador, fecha y hora de acceso. Esta información se conserva únicamente con fines técnicos y estadísticos agregados.</p>
+
+            <h3>4. Finalidad del tratamiento</h3>
+            <p>Cualquier información técnica recolectada se utilizará exclusivamente para:</p>
+            <ul>
+                <li>Garantizar el funcionamiento adecuado del sitio educativo.</li>
+                <li>Detectar y prevenir intentos de uso indebido o ataques informáticos.</li>
+                <li>Generar estadísticas agregadas y anónimas de consulta.</li>
+            </ul>
+
+            <h3>5. No transferencia de información</h3>
+            <p>El responsable no transfiere, vende, comparte ni cede información a terceros con fines comerciales. La información técnica del servidor podría ser entregada únicamente cuando lo exija una autoridad competente mediante orden legal.</p>
+
+            <h3>6. Derechos del titular</h3>
+            <p>De conformidad con la Ley 1581 de 2012, todo titular de datos personales tiene derecho a:</p>
+            <ul>
+                <li>Conocer, actualizar y rectificar sus datos personales.</li>
+                <li>Solicitar prueba de la autorización otorgada al responsable.</li>
+                <li>Ser informado sobre el uso que se ha dado a sus datos.</li>
+                <li>Presentar quejas ante la Superintendencia de Industria y Comercio.</li>
+                <li>Revocar la autorización y/o solicitar la supresión del dato.</li>
+                <li>Acceder en forma gratuita a sus datos personales.</li>
+            </ul>
+
+            <h3>7. Canal de atención</h3>
+            <p>Para ejercer cualquiera de los derechos anteriores, presentar consultas, reclamos o solicitudes relacionadas con esta política, el titular podrá comunicarse con el responsable a través del correo electrónico: <strong>Anduxo12@gmail.com</strong>.</p>
+
+            <h3>8. Uso de cookies</h3>
+            <p>Este sitio educativo no utiliza cookies de rastreo, análisis comercial ni publicidad personalizada.</p>
+
+            <h3>9. Modificaciones</h3>
+            <p>El responsable se reserva el derecho de modificar la presente política en cualquier momento, en cuyo caso se publicará la nueva versión en este mismo sitio.</p>
+
+            <h3>10. Aceptación</h3>
+            <p>La navegación y permanencia en el presente sitio implica el conocimiento y la aceptación de la presente política de privacidad por parte del visitante.</p>
+
+            <div class="info-box">
+                <strong>Autoridad de control:</strong> Superintendencia de Industria y Comercio (SIC) de Colombia. Para presentar quejas relacionadas con el tratamiento de datos personales, puede consultar: <em>www.sic.gov.co</em>.
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- ====================== TÉRMINOS Y CONDICIONES ====================== -->
+<div id="page-terminos-condiciones" class="page">
+    <main>
+        <section>
+            <div class="breadcrumb"><a href="#inicio">~/inicio</a> &gt; terminos-condiciones</div>
+            <h2>Términos y Condiciones de Uso</h2>
+            <p><em>Última actualización: 8 de mayo de 2026</em></p>
+
+            <div class="responsable-box">
+                <strong>Responsable del sitio y del tratamiento de los datos:</strong>
+                <p style="margin-top: 0.6rem;">
+                    <strong>Nombre:</strong> Juan Esteban Hernandez Lopez<br>
+                    <strong>NIT:</strong> 1.000.403.486-1<br>
+                    <strong>Dirección:</strong> Calle 84b #39b-34 , Barranquilla, Atlántico — Colombia<br>
+                    <strong>Correo electrónico de contacto:</strong> Anduxo12@gmail.com
+                </p>
+            </div>
+
+            <h3>1. Aceptación de los términos</h3>
+            <p>El acceso y uso del presente sitio web implican la aceptación plena, expresa y sin reservas de los presentes Términos y Condiciones por parte del usuario.</p>
+
+            <h3>2. Objeto 100% educativo</h3>
+            <p>Este sitio web tiene un fin <strong>100% educativo e informativo</strong>. Su contenido busca difundir conceptos y pautas prácticas sobre el cuidado y mantenimiento de extintores en casa. Bajo ninguna circunstancia constituye asesoría técnica, profesional, comercial ni de ingeniería en seguridad contra incendios.</p>
+
+            <h3>3. Carácter no comercial</h3>
+            <p>El sitio no realiza actividades comerciales, no vende productos ni servicios, no recibe pagos, no recolecta datos personales con fines comerciales y no realiza captación de clientes ni potenciales consumidores.</p>
+
+            <h3>4. Propiedad intelectual</h3>
+            <p>Los contenidos educativos, textos, diseños, imágenes y elementos gráficos del sitio son propiedad del responsable. Se permite la reproducción parcial con fines educativos, citando la fuente. Está prohibida la utilización comercial sin autorización previa y por escrito.</p>
+
+            <h3>5. Uso permitido</h3>
+            <p>El usuario se obliga a utilizar el sitio:</p>
+            <ul>
+                <li>Conforme a la ley colombiana, la moral y las buenas costumbres.</li>
+                <li>Sin alterar, dañar o intentar acceder no autorizadamente al sitio o a sus servidores.</li>
+                <li>Sin utilizar el contenido para fines ilícitos, fraudulentos o lesivos a terceros.</li>
+                <li>Sin reproducir el contenido con fines comerciales no autorizados.</li>
+            </ul>
+
+            <h3>6. Limitación de responsabilidad</h3>
+            <p>El responsable del sitio actúa de buena fe y se esfuerza por mantener la información educativa actualizada y precisa. Sin embargo, <strong>no garantiza</strong> que la información esté libre de errores u omisiones. La información publicada constituye orientación didáctica general; ante una emergencia real o duda técnica especializada, el usuario deberá acudir a profesionales certificados o a la línea de emergencia <strong>123</strong>.</p>
+
+            <h3>7. Enlaces a terceros</h3>
+            <p>En caso de que el sitio incluya enlaces a sitios web de terceros, el responsable no se hace responsable del contenido, las políticas de privacidad ni las prácticas de dichos sitios externos.</p>
+
+            <h3>8. Disponibilidad del sitio</h3>
+            <p>El responsable no garantiza la disponibilidad ininterrumpida del sitio. Podrán existir interrupciones por mantenimiento, actualizaciones, fallas técnicas o causas de fuerza mayor.</p>
+
+            <h3>9. Modificaciones</h3>
+            <p>El responsable se reserva el derecho de modificar el contenido del sitio y los presentes Términos y Condiciones en cualquier momento, sin necesidad de aviso previo.</p>
+
+            <h3>10. Tratamiento de datos</h3>
+            <p>Para conocer el tratamiento de los datos, el usuario podrá consultar la <a href="#politicas-privacidad" style="color: var(--accent-amber); text-decoration: underline;">Política de Privacidad</a>. El responsable del tratamiento de los datos personales es <strong>Juan Esteban Hernandez Lopez</strong>, identificado anteriormente.</p>
+
+            <h3>11. Legislación aplicable y jurisdicción</h3>
+            <p>Los presentes Términos y Condiciones se rigen por las leyes de la <strong>República de Colombia</strong>. Cualquier controversia será resuelta ante los jueces competentes de la ciudad de Barranquilla, Atlántico, salvo que la ley disponga otra cosa.</p>
+
+            <h3>12. Contacto</h3>
+            <p>Para cualquier consulta relacionada con estos Términos y Condiciones, puede comunicarse al correo: <strong>Anduxo12@gmail.com</strong>.</p>
+
+            <div class="info-box">
+                <strong>Constancia:</strong> Al continuar navegando en este sitio, el usuario manifiesta haber leído, entendido y aceptado los presentes Términos y Condiciones, así como la Política de Privacidad publicada.
+            </div>
+        </section>
+    </main>
+</div>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+    <div class="footer-container">
+        <div class="responsable-footer">
+            <h4>Identificación del Anunciante y Responsable</h4>
+            <p>Esta página web es un recurso 100% educativo de carácter no comercial. El anunciante, responsable de la página web y responsable del tratamiento de los datos es:</p>
+            <p style="margin-top: 0.8rem;">
+                <strong>Juan Esteban Hernandez Lopez</strong><br>
+                <strong>NIT:</strong> 1.000.403.486-1<br>
+                Calle 84b #39b-34 , Barranquilla, Atlántico — Colombia<br>
+                Correo: Anduxo12@gmail.com
+            </p>
+        </div>
+        <div>
+            <h4>Navegación</h4>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                <li><a href="#mision-vision">Misión y Visión</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Legal</h4>
+            <ul>
+                <li><a href="#politicas-privacidad">Políticas y Privacidad</a></li>
+                <li><a href="#terminos-condiciones">Términos y Condiciones</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Juan Esteban Hernandez Lopez · Todos los derechos reservados</p>
+        <p>Sitio 100% educativo · Sin fines comerciales · Sin captación de datos personales</p>
+    </div>
+</footer>
+
+<script>
+(function() {
+    var validPages = ['inicio', 'sobre-nosotros', 'mision-vision', 'politicas-privacidad', 'terminos-condiciones'];
+
+    var titles = {
+        'inicio': 'Juan Esteban Hernandez Lopez',
+        'sobre-nosotros': 'Juan Esteban Hernandez Lopez · Sobre Nosotros',
+        'mision-vision': 'Juan Esteban Hernandez Lopez · Misión y Visión',
+        'politicas-privacidad': 'Juan Esteban Hernandez Lopez · Políticas y Privacidad',
+        'terminos-condiciones': 'Juan Esteban Hernandez Lopez · Términos y Condiciones'
+    };
+
+    function showPage(pageId) {
+        if (validPages.indexOf(pageId) === -1) pageId = 'inicio';
+
+        var pages = document.querySelectorAll('.page');
+        for (var i = 0; i < pages.length; i++) {
+            pages[i].classList.remove('active');
+        }
+        var navs = document.querySelectorAll('nav a');
+        for (var j = 0; j < navs.length; j++) {
+            navs[j].classList.remove('active');
+        }
+
+        var page = document.getElementById('page-' + pageId);
+        if (page) page.classList.add('active');
+
+        var navLink = document.getElementById('nav-' + pageId);
+        if (navLink) navLink.classList.add('active');
+
+        if (titles[pageId]) document.title = titles[pageId];
+    }
+
+    function loadFromHash() {
+        var hash = (window.location.hash || '').replace('#', '');
+        showPage(hash || 'inicio');
+        window.scrollTo(0, 0);
+    }
+
+    window.addEventListener('hashchange', loadFromHash);
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadFromHash);
+    } else {
+        loadFromHash();
+    }
+})();
+</script>
+
+</body>
+</html>
